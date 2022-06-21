@@ -10,6 +10,7 @@ export const CartWrapper = styled.div`
   z-index: 100;
   display: flex;
   justify-content: flex-end;
+  display: none;
 `;
 
 export const CartStyle = styled.div`

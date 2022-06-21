@@ -6,11 +6,20 @@ export const DetailsStyle = styled.div`
   margin-top: 5rem;
   img {
     width: 40%;
+    box-shadow: 16px 16px 10px gray;
+    border-radius: 8px;
   }
 `;
 
 export const ProductInfo = styled.div`
   width: 40%;
+  background: white;
+  padding: 2rem 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 16px 16px 10px gray;
+  border-radius: 8px;
   button {
     font-size: 1rem;
     font-weight: medium;

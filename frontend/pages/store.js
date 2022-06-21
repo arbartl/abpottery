@@ -20,7 +20,6 @@ function Store() {
         <title>Products</title>
       </Head>
       <main>
-        <h1>Products</h1>
         <Gallery>
           {products.map((product) => (
             <Product key={product.attributes.slug} product={product} />

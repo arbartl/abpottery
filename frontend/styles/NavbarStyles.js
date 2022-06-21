@@ -2,12 +2,22 @@ import styled from "styled-components";
 
 export const NavbarStyles = styled.nav`
   min-height: 15vh;
+  width: 100%;
+  margin: 2rem 0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
+  background: white;
+  padding: 1rem 5%;
+  box-shadow: 8px 8px 8px gray;
+  border-radius: 8px;
   a {
     font-size: 1.2rem;
+  }
+  img {
+    width: 30%;
+    cursor: pointer;
   }
 `;
 
