@@ -6,6 +6,7 @@ export const StateContext = ({ children }) => {
   const [quantity, setQuantity] = useState(1);
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   const increaseQuantity = () => {
     setQuantity((prevState) => prevState + 1);
@@ -30,7 +31,23 @@ export const StateContext = ({ children }) => {
     } else {
       setCartItems([...cartItems, { ...product, quantity }]);
     }
+    setTotalQuantity((prevTotal) => prevTotal + quantity);
     setQuantity(1);
+  };
+
+  //Remove product from cart
+  const onRemove = (product) => {
+    setCartItems((prevCart) =>
+      prevCart.filter((item) => item.slug !== product.slug)
+    );
+    setTotalQuantity((prevTotal) => prevTotal - product.quantity);
+  };
+
+  const cartSubtotal = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
   return (
@@ -43,6 +60,9 @@ export const StateContext = ({ children }) => {
         setShowCart,
         cartItems,
         onAdd,
+        onRemove,
+        cartSubtotal,
+        totalQuantity,
       }}
     >
       {children}

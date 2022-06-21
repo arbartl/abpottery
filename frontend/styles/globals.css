@@ -2,11 +2,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   background: url("https://res.cloudinary.com/abpottery/image/upload/c_scale,o_50,w_883/v1655771909/seemless_speckle_pattern_ypwifp.png")
     repeat;
-  margin: 0rem 10%;
+  margin: 0rem 5%;
   --primary: #2d2d2d;
   --secondary: #535353;
 }

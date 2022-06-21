@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { FiShoppingBag } from "react-icons/fi";
+import { useStateContext } from "../lib/context";
 import { NavbarStyles, NavItems } from "../styles/NavbarStyles";
 import Cart from "./Cart";
 
+const { AnimatePresence, motion } = require("framer-motion");
+
 function Navbar() {
+  const { showCart, setShowCart, totalQuantity } = useStateContext();
+
   return (
     <NavbarStyles>
       <Link href={"/"}>
@@ -17,12 +22,17 @@ function Navbar() {
       <Link href={"/about"}>About Me</Link>
       <Link href={"/store"}>Products</Link>
       <NavItems>
-        <div>
+        <div onClick={() => setShowCart(true)}>
+          {totalQuantity > 0 && (
+            <motion.span animate={{ scale: 1 }} initial={{ scale: 0 }}>
+              {totalQuantity}
+            </motion.span>
+          )}
           <FiShoppingBag />
           <h3>Cart</h3>
         </div>
       </NavItems>
-      <Cart />
+      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </NavbarStyles>
   );
 }
