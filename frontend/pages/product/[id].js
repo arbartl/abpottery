@@ -16,6 +16,7 @@ import { useStateContext } from "../../lib/context";
 
 function ProductDetails() {
   const { query } = useRouter();
+  const route = useRouter();
   const { quantity, increaseQuantity, decreaseQuantity, onAdd } =
     useStateContext();
 
@@ -37,6 +38,7 @@ function ProductDetails() {
       <ProductInfo>
         <h3>{name}</h3>
         <p>{description}</p>
+        <p>${price}</p>
         <Quantity>
           <span>Quantity</span>
           <button onClick={decreaseQuantity}>
@@ -47,7 +49,12 @@ function ProductDetails() {
             <AiFillPlusCircle />
           </button>
         </Quantity>
-        <Buy onClick={() => onAdd(data.products.data[0].attributes, quantity)}>
+        <Buy
+          onClick={() => {
+            onAdd(data.products.data[0].attributes, quantity);
+            route.push("/store");
+          }}
+        >
           Add to cart
         </Buy>
       </ProductInfo>

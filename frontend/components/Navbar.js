@@ -3,11 +3,14 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useStateContext } from "../lib/context";
 import { NavbarStyles, NavItems } from "../styles/NavbarStyles";
 import Cart from "./Cart";
+import User from "./User";
+import { useUser } from "@auth0/nextjs-auth0";
 
 const { AnimatePresence, motion } = require("framer-motion");
 
 function Navbar() {
   const { showCart, setShowCart, totalQuantity } = useStateContext();
+  const { user, error, isLoading } = useUser();
 
   return (
     <NavbarStyles>
@@ -22,6 +25,7 @@ function Navbar() {
       <Link href={"/about"}>About Me</Link>
       <Link href={"/store"}>Products</Link>
       <NavItems>
+        <User />
         <div onClick={() => setShowCart(true)}>
           {totalQuantity > 0 && (
             <motion.span animate={{ scale: 1 }} initial={{ scale: 0 }}>
@@ -32,6 +36,7 @@ function Navbar() {
           <h3>Cart</h3>
         </div>
       </NavItems>
+
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </NavbarStyles>
   );
