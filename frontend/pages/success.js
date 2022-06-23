@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { SuccessWrapper, Card, OrderSummary } from "../styles/SuccessStyles";
 import formatMoney from "../lib/formatMoney";
+import { useEffect } from "react";
+import { useStateContext } from "../lib/context";
 
 const stripe = require("stripe")(
   `${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`
@@ -19,6 +21,12 @@ export async function getServerSideProps(params) {
 function Success({ order }) {
   const route = useRouter();
   const { address } = order.customer_details;
+  const { cartItems, setCartItems } = useStateContext();
+
+  useEffect(() => {
+    setCartItems([]);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, []);
 
   return (
     <SuccessWrapper>
@@ -46,7 +54,7 @@ function Success({ order }) {
             </thead>
             <tbody>
               {order.line_items.data.map((item) => (
-                <tr>
+                <tr key={item.description}>
                   <td>{item.description}</td>
                   <td>{item.quantity}</td>
                   <td>{formatMoney(item.price.unit_amount)}</td>

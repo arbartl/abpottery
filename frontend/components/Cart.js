@@ -14,6 +14,7 @@ import { Quantity } from "../styles/ProductDetails";
 import { AiFillDelete, AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import getStripe from "../lib/getStripe";
+import { useEffect } from "react";
 
 // Animation Variants
 const card = {
@@ -35,6 +36,10 @@ const cards = {
 function Cart() {
   const { cartItems, setShowCart, onRemove, onAdd, cartSubtotal } =
     useStateContext();
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Payment
   const handleCheckout = async () => {

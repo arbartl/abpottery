@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useEffect } from "react";
 
 export const ShopContext = createContext();
 
@@ -7,6 +8,17 @@ export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    setCartItems(cart);
+  }, []);
+
+  useEffect(() => {
+    setTotalQuantity(
+      cartItems.reduce((total, item) => total + item.quantity, 0)
+    );
+  }, [cartItems]);
 
   const increaseQuantity = () => {
     setQuantity((prevState) => prevState + 1);
@@ -59,6 +71,7 @@ export const StateContext = ({ children }) => {
         showCart,
         setShowCart,
         cartItems,
+        setCartItems,
         onAdd,
         onRemove,
         cartSubtotal,
