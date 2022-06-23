@@ -10,7 +10,7 @@ export const StateContext = ({ children }) => {
   const [totalQuantity, setTotalQuantity] = useState(0);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart"));
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(cart);
   }, []);
 
