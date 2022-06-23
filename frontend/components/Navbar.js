@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { FiShoppingBag } from "react-icons/fi";
+import { AiOutlineInstagram } from "react-icons/ai";
 import { useStateContext } from "../lib/context";
-import { NavbarStyles, NavItems } from "../styles/NavbarStyles";
+import {
+  NavbarStyles,
+  NavItems,
+  NavLinks,
+  PageLinks,
+  Social,
+  CartIcon,
+} from "../styles/NavbarStyles";
 import Cart from "./Cart";
 import User from "./User";
 import { useUser } from "@auth0/nextjs-auth0";
@@ -20,23 +28,37 @@ function Navbar() {
             "https://res.cloudinary.com/abpottery/image/upload/v1655771339/Transparent_logo_with_name_2_gxm5d5.png"
           }
           alt="Alex Broussard Pottery Logo"
+          className={"logo"}
         />
       </Link>
-      <Link href={"/about"}>About Me</Link>
-      <Link href={"/store"}>Products</Link>
-      <NavItems>
-        <User />
-        <div onClick={() => setShowCart(true)}>
-          {totalQuantity > 0 && (
-            <motion.span animate={{ scale: 1 }} initial={{ scale: 0 }}>
-              {totalQuantity}
-            </motion.span>
-          )}
-          <FiShoppingBag />
-          <h3>Cart</h3>
-        </div>
-      </NavItems>
-
+      <NavLinks>
+        <PageLinks>
+          <Link href={"/about"}>About Me</Link>
+          <Link href={"/store"}>Products</Link>
+        </PageLinks>
+        <NavItems>
+          <User />
+          <CartIcon onClick={() => setShowCart(true)}>
+            {totalQuantity > 0 && (
+              <motion.span animate={{ scale: 1 }} initial={{ scale: 0 }}>
+                {totalQuantity}
+              </motion.span>
+            )}
+            <FiShoppingBag />
+            <h3>Cart</h3>
+          </CartIcon>
+          <a
+            target="_blank"
+            href="https://instagram.com/alexbroussardpottery/"
+            rel="noopener noreferrer"
+          >
+            <Social>
+              <AiOutlineInstagram />
+              <h3>Social</h3>
+            </Social>
+          </a>
+        </NavItems>
+      </NavLinks>
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </NavbarStyles>
   );

@@ -11,7 +11,7 @@ export const ProductStyles = styled.div`
 
   img {
     height: auto;
-    width: auto;
+    width: 100%;
     cursor: pointer;
   }
 

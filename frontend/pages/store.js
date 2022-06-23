@@ -1,12 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useQuery } from "urql";
-import { PRODUCTS_QUERY } from "../lib/query";
+import { GET_PRODUCTS_BY_CATEGORY_QUERY, PRODUCTS_QUERY } from "../lib/query";
 import Product from "../components/Product";
 import { Gallery } from "../styles/Gallery";
+import { useState, useEffect } from "react";
 
 function Store() {
-  const [results] = useQuery({ query: PRODUCTS_QUERY });
+  const [category, setCategory] = useState("All");
+  const [results, reexecuteQuery] = useQuery({ query: PRODUCTS_QUERY });
   const { data, error, fetching } = results;
 
   if (error) return <p>Error fetching products: {error.message}</p>;

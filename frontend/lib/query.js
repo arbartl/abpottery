@@ -41,3 +41,25 @@ export const GET_PRODUCT_QUERY = `
     }
   }
 `;
+
+export const GET_PRODUCTS_BY_CATEGORY_QUERY = `
+query getProductByCategory($category = String!){
+  products(filters: {category: {eq: $category}}) {
+		data {
+      attributes {
+        name
+        description
+        price
+        slug
+        image {
+          data {
+            attributes {
+              formats
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;

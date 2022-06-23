@@ -12,14 +12,14 @@ function User() {
       return (
         <div onClick={() => route.push("/api/auth/login")}>
           <FaUserCircle />
-          <h3>Profile</h3>
+          <h3>Login</h3>
         </div>
       );
     } else {
       return (
         <Profile onClick={() => route.push("/profile")}>
           <img src={user.picture} alt={user.name} />
-          <h3>{user.name}</h3>
+          <h3>Profile</h3>
         </Profile>
       );
     }
@@ -27,10 +27,24 @@ function User() {
 }
 
 const Profile = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  height: 100%;
   img {
     border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
+    height: 30px;
+    width: auto;
+  }
+  @media (max-width: 800px) {
+    img {
+      width: 25px;
+      height: auto;
+    }
+  }
+  h3 {
+    text-align: center;
   }
 `;
 
