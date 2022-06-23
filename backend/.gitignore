@@ -82,6 +82,7 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
+.env
 
 ############################
 # Node.js
@@ -111,3 +112,4 @@ exports
 *.cache
 build
 .strapi-updater.json
+package-lock.json
